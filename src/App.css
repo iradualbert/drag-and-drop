@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #f7f7f7;
+  background-color: white, #f7f7f7;
 }
 h1, h2, h3, h4, h5, h6, p{
   letter-spacing: 1px;
@@ -40,15 +40,17 @@ button {
   font-size: medium;
 }
 
+
 .list-item {
   display: flex;
   padding: 0;
   margin: 8px 0;
   min-width: 300px;
   font-size: 22px;
-  border:1px solid #aba9a9;
-  background-color: #c8c4c4;
+  /* border:1px solid #aba9a9; */
+  background-color: #d4d2d2;
   cursor: grab;
+  border-radius: 10px;
 }
 
 .list-item > h4 {
@@ -64,3 +66,14 @@ button {
   padding: 10px;
   padding-right: 16px;
 }
+
+.new-position {
+  border: 2px solid #34d44f ;
+  /* background-color: unset; */
+  opacity: 0.2;
+}
+
+
+.drag-item {
+  
+};

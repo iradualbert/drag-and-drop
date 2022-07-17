@@ -7,7 +7,8 @@ import "./App.css";
 const App = () => {
   return (
     <div className="container">
-      <DragDropFiles />
+      {/* <DragDropFiles /> */}
+      <SortableList />
     </div>
   )
 };

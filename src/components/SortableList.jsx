@@ -1,16 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 
 const SortableList = () => {
 
     const [sports, setSports] = useState(["Football", "Basketball", "Baseball", "Soccer", "Hockey", "Running", "Chess", "Karate", "Kungfu"]);
-    const itemRefs = useRef([]);
     const [dragItemIndex, setDragItemIndex] = useState();
-    const [newPosition, setNewPosition] = useState();
-
-
-
-    // don't swap, just rearrange the items like it's done on the Github Projects
+    const [dragOverItemIndex, setDragOverItemIndex] = useState();
 
     function handleDragStart(index) {
         return function (event) {
@@ -36,12 +31,24 @@ const SortableList = () => {
     };
 
 
-    // TO BE DELETED
+    // for the next position
     const handleDragEnter = index => {
         return (event) =>{
-            console.log(index, event)
+            setDragOverItemIndex(index);
+            console.log("New Position: ", index, event)
         }
     }
+
+    const handleDragLeave = index => {
+        return event => {
+            setDragOverItemIndex(undefined)
+        }
+    };
+
+    const handleDragEnd = (event) => {
+        setDragItemIndex(undefined);
+        setDragOverItemIndex(undefined);
+    };
 
 
     return (
@@ -51,13 +58,14 @@ const SortableList = () => {
                 {sports.map((sport, index) => (
                     <li
                         key={index}
-                        ref={el => itemRefs.current[index] = el}
-                        className="list-item"
-                        draggable="true"
+                        className={dragOverItemIndex=== index ? "list-item new-position": "list-item"}
+                        draggable
                         onDragStart={handleDragStart(index)}
                         onDragOver={handleDragOver(index)}
                         onDrop={handleDrop(index)}
                         onDragEnter = {handleDragEnter(index)}
+                        onDragLeave={handleDragLeave(index)}
+                        onDragEnd={handleDragEnd}
                     >
                         <span>{index}</span>
                         <h4>{sport}</h4>
